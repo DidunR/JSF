@@ -62,10 +62,10 @@ function validateCreditCardNumber(cardNumber) {
     return regexp.test(cardNumber);
 }
 
-console.log(validateCreditCardNumber('1234-5678-9012-3456'));
-console.log(validateCreditCardNumber('1234-5678-9012-34567'));
-console.log(validateCreditCardNumber('1234567890123456'));
-console.log(validateCreditCardNumber('1234 5678 9012 3456'));
+console.log(validateCreditCardNumber("1234-5678-9012-3456"));
+console.log(validateCreditCardNumber("1234-5678-9012-34567"));
+console.log(validateCreditCardNumber("1234567890123456"));
+console.log(validateCreditCardNumber("1234 5678 9012 3456"));
 
 
 // 8-5.
@@ -75,7 +75,6 @@ console.log(validateCreditCardNumber('1234 5678 9012 3456'));
 // •  Тільки латинські літери в великому (A-Z) і малому (a-z) регістрах.
 // •  В тілі емейла допустимі лишеі символи “_” і “-”. Але вони не можуть бути 1-им символом емейлу.
 //  •  Символ “-” не може повторюватися.
-
 // checkEmail('my_mail@gmail.com');
 // "Email is correct!"
 // checkEmail('#my_mail@gmail.com');
@@ -83,7 +82,16 @@ console.log(validateCreditCardNumber('1234 5678 9012 3456'));
 // checkEmail('my_ma--il@gmail.com');
 // "Email is not correct!"
 
+function checkNewEmail(email) {
+    const regexp = /^[A-Za-z0-9]+([_-]?[A-Za-z0-9]+)*@[A-Za-z0-9]+([_-]?[A-Za-z0-9]+)*(\.[A-Za-z]{2,})+$/;
+    return regexp.test(email) ? "Email is correct!" : "Email is not correct!";
+}
 
+console.log(checkNewEmail("example@example.com"));
+console.log(checkNewEmail("example@.com"));
+console.log(checkNewEmail("exam34 ple@.com."));
+console.log(checkNewEmail("example@com"));
+console.log(checkNewEmail("exmp22le@gmail.com"));
 
 
 // 8-6.
@@ -94,7 +102,23 @@ console.log(validateCreditCardNumber('1234 5678 9012 3456'));
 // checkLogin('ee1.1ret3');
 // true
 // //1.1, 3
-
 // checkLogin('ee1*1ret3');
 // false
 // //1, 1, 3
+
+function checkLogin(str) {
+    const regex = /^[a-zA-Z][a-zA-Z\.0-9]{1,9}$/;
+    const match = str.match(regex);
+
+    if (match !== null) {
+        const numbers = str.match(/[0-9]*\.?[0-9]+/g);
+        return [true, numbers ? numbers : []];
+    } else {
+        const numbers = str.match(/[0-9]*\.?[0-9]+/g);
+        return [false, numbers ? numbers : []];
+    }
+}
+
+console.log(checkLogin("ee1.1ret3"));
+console.log(checkLogin("Aee16ret3"));
+console.log(checkLogin("ee1*1ret3"));
