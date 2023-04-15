@@ -77,9 +77,12 @@ new Promise(function (resolve, reject) {
 // Задачу потрібно реалізувати без застосування промісів. Переписати функцію showNumbers, використовуючи конструкцію async/await.
 // Приклад  роботи:
 
+
 const delay = (i, time) => new Promise(resolve => setTimeout(() => resolve(i), time));
-function showNumbers() {
-        // your code with using delay(i, time)
+async function showNumbers() {
+    for (let i = 0; i <= 10; i++) {
+        await delay(i, Math.floor(Math.random() * 1000)); // рандомний інтервал від 0 до 1000 мілісекунд
+        console.log(i);
+    } // your code with using delay(i, time)
 }
 showNumbers();
-
