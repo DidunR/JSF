@@ -53,7 +53,7 @@ const http = require("http");
 const personalModule = require("./personalmodule");
 
 const newServer = http.createServer((req, res) => {
-    const username = "Іван";
+    const username = "UserName";
     const greeting = personalModule.greetUser(username);
 
     res.statusCode = 200;
