@@ -52,7 +52,7 @@ module.exports = { greetUser };
 const http = require("http");
 const personalModule = require("./personalmodule");
 
-const server = http.createServer((req, res) => {
+const newServer = http.createServer((req, res) => {
     const username = "Іван";
     const greeting = personalModule.greetUser(username);
 
@@ -61,7 +61,7 @@ const server = http.createServer((req, res) => {
     res.end(greeting);
 });
 
-server.listen(port, hostname, () => {
+newServer.listen(port, hostname, () => {
     console.log("Server is running on http://127.0.0.1:3000");
 });
 
